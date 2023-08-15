@@ -66,7 +66,7 @@ def handle_userinput(user_question):
 
 def main():
     load_dotenv()
-    st.set_page_config(page_title="Chat with multiple PDFs",
+    st.set_page_config(page_title="Invention House",
                        page_icon=":books:")
     st.write(css, unsafe_allow_html=True)
 
@@ -75,15 +75,17 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    st.header("Chat with multiple PDFs :books:")
-    user_question = st.text_input("Ask a question about your documents:")
+    st.header("Invention Assistant System :books:")
+    st.subheader("Owned by Beijing Crown & Rights Law Firm")
+    user_question = st.text_input("Please input your intended title for the potential invention Patent:")
+    #user_question = "I want you to be a top inventor, based on the uploaded documents, please give me some ideas for a new invention for the title: " + user_question_tempt
     if user_question:
         handle_userinput(user_question)
 
     with st.sidebar:
-        st.subheader("Your documents")
+        st.subheader("Prior Art Documents")
         pdf_docs = st.file_uploader(
-            "Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
+            "Upload prior art PDFs here and click on 'Process'", accept_multiple_files=True)
         if st.button("Process"):
             with st.spinner("Processing"):
                 # get pdf text
